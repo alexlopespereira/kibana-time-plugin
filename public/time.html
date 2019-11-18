@@ -4,7 +4,7 @@
   <carousel interval="0">
       <slide ng-if="vis.params.enable_quick" active="activeSlide.quick">
         <h4 style="margin-top: 0px; margin-bottom: 2px;">
-          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Quick</strong>
+          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Rápido</strong>
         </h4>
         <div>
           <select ng-model="selectedQuick" ng-options="option.display for option in quickLists" ng-change="setQuick(selectedQuick)">
@@ -14,14 +14,14 @@
 
       <slide ng-if="vis.params.enable_relative" active="activeSlide.relative">
         <h4 style="margin-top: 0px; margin-bottom: 2px;">
-          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Relative</strong>
+          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Relativo</strong>
         </h4>
         <form ng-submit="setRelative()" class="form-inline">
           <div style="display: inline-block;">
             <label style="float:left;">
-              From:
+              De:
               <span ng-show="relative.preview">{{relative.preview}}</span>
-              <span ng-hide="relative.preview"><i>Invalid Expression</i></span>
+              <span ng-hide="relative.preview"><i>Expressão Inválida</i></span>
             </label>
             <br>
             <div class="form-group">
@@ -49,14 +49,14 @@
                   ng-checked="relative.round"
                   ng-change="formatRelative()"
                   type="checkbox">
-                round to the {{units[relative.unit]}}
+                arredondar para {{units[relative.unit]}}
               </label>
             </div>
           </div>
 
           <div style="display: inline-block;">
             <label style="float:left;">
-              To: Now
+              Até: Agora
             </label>
             <br>
             <div class="form-group">
@@ -69,7 +69,7 @@
             <br>
             <div class="form-group">
               <button type="submit" class="btn btn-primary" ng-disabled="!relative.preview">
-                Go
+                Confirmar
               </button>
             </div>
           </div>
@@ -78,33 +78,33 @@
 
       <slide ng-if="vis.params.enable_absolut" active="activeSlide.absolute">
         <h4 style="margin-top: 0px; margin-bottom: 2px;">
-          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Absolute</strong>
+          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Absoluto</strong>
         </h4>
         <form ng-submit="setAbsolute()">
           <div style="display: inline-block;">
-            <label class="small" style="float:left;">From: <span ng-show="!time.absolute_from"><i>Invalid Date</i></span>
+            <label class="small" style="float:left;">De: <span ng-show="!time.absolute_from"><i>Data Inválida</i></span>
             </label>
             <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_from">
           </div>
 
           <div style="display: inline-block;">
-            <label class="small" style="float:left;">To: <span ng-show="!time.absolute_to"><i>Invalid Date</i></span>
+            <label class="small" style="float:left;">Até: <span ng-show="!time.absolute_to"><i>Data Inválida</i></span>
             </label>
             <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_to">
           </div>
 
           <div style="display: inline-block;">
             <button class="btn btn-primary" style="margin-bottom: 60px;" ng-disabled="time.absolute_from > time.absolute_to || !time.absolute_from || !time.absolute_to" type="submit">
-              Go
+              Confirmar
             </button>
-            <span class="small" ng-show="time.absolute_from > time.absolute_to"><strong>From</strong> must occur before <strong>To</strong></span>
+            <span class="small" ng-show="time.absolute_from > time.absolute_to"><strong>De</strong> deve ocorrer antes do <strong>Até</strong></span>
           </div>
         </form>
       </slide>
 
       <slide ng-if="vis.params.enable_animation">
         <h4 style="margin-top: 0px; margin-bottom: 2px;">
-          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Time Animation</strong>
+          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Animação de Tempo</strong>
           <pretty-duration class="ng-isolate-scope" to="time.to" from="time.from"></pretty-duration>
         </h4>
         <p>
@@ -113,7 +113,7 @@
         <timeslider start="getStartTime()" end="getEndTime()" ticks="10" on-change="filterByTime" playback="kibanaPlayback" on-clear="removeTimeFilter" style="margin-left: 43px; margin-right: 43px;"></timeslider>
         <div class="small" style="display: inline-block;">
           <label style="float:left;">
-            round to the nearest
+            arredondar para o mais próximo
           </label>
           <select
             ng-model="slider.roundUnit"
