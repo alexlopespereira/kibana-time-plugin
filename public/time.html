@@ -1,16 +1,26 @@
 <div ng-controller="KbnTimeVisController" class="time-vis">
   <h3 ng-show="config.title">{{config.title}}</h3>
 
-  <carousel interval="0">
-      <slide ng-if="vis.params.enable_quick" active="activeSlide.quick">
-        <h4 style="margin-top: 0px; margin-bottom: 2px;">
-          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Rápido</strong>
-        </h4>
-        <div>
-          <select ng-model="selectedQuick" ng-options="option.display for option in quickLists" ng-change="setQuick(selectedQuick)">
-          </select>
-        </div>
-      </slide>
+  <div ng-if="vis.params.enable_quick" active="activeSlide.quick">
+    <h4 style="margin-top: 0px; margin-bottom: 2px;">
+      <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Rápido</strong>
+    </h4>
+    <div>
+      <select ng-model="selectedQuick" ng-options="option.display for option in quickLists" ng-change="setQuick(selectedQuick)">
+      </select>
+    </div>
+  </div>
+
+<!--  <carousel interval="0">-->
+<!--      <slide ng-if="vis.params.enable_quick" active="activeSlide.quick">-->
+<!--        <h4 style="margin-top: 0px; margin-bottom: 2px;">-->
+<!--          <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Rápido</strong>-->
+<!--        </h4>-->
+<!--        <div>-->
+<!--          <select ng-model="selectedQuick" ng-options="option.display for option in quickLists" ng-change="setQuick(selectedQuick)">-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </slide>-->
 
 <!--      <slide ng-if="vis.params.enable_relative" active="activeSlide.relative">-->
 <!--        <h4 style="margin-top: 0px; margin-bottom: 2px;">-->
@@ -133,7 +143,7 @@
 <!--          </select>-->
 <!--        </div>-->
 <!--      </slide>-->
-    </carousel>
+<!--    </carousel>-->
 
 
 </div>
