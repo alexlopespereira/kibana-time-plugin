@@ -4,6 +4,7 @@ import moment from 'moment';
 import { SimpleEmitter } from 'ui/utils/simple_emitter';
 import { timefilter } from 'ui/timefilter';
 import { uiModules } from 'ui/modules';
+
 const module = uiModules.get('kibana/kibana-time-plugin', ['kibana', 'ktp-ui.bootstrap.carousel', 'BootstrapAddons']);
 
 const msearchEmitter = new SimpleEmitter();
@@ -21,7 +22,7 @@ module.config(function($httpProvider) {
 });
 
   module.controller('KbnTimeVisController', function (config, $scope, $rootScope, Private, $filter, $timeout) {
-    const TIMESLIDER_INSTR = "Click and drag to select a time range."
+    const TIMESLIDER_INSTR = "Clique e arraste para selecionar o intervalo de tempo."
     const DATE_FORMAT = 'MMMM Do YYYY, HH:mm:ss z';
     $rootScope.plugin = {
       timePlugin: {}
@@ -50,22 +51,22 @@ module.config(function($httpProvider) {
     $scope.quickLists = quickRanges;
 
     $scope.units = {
-      s: 'second',
-      m: 'minute',
-      h: 'hour',
-      d: 'day',
-      w: 'week',
-      M: 'month',
-      y: 'year'
+      s: 'segundo',
+      m: 'minuto',
+      h: 'hora',
+      d: 'dia',
+      w: 'semana',
+      M: 'mês',
+      y: 'ano'
     };
     $scope.relativeOptions = [
-      {text: 'Seconds ago', value: 's'},
-      {text: 'Minutes ago', value: 'm'},
-      {text: 'Hours ago', value: 'h'},
-      {text: 'Days ago', value: 'd'},
-      {text: 'Weeks ago', value: 'w'},
-      {text: 'Months ago', value: 'M'},
-      {text: 'Years ago', value: 'y'},
+      {text: 'Segundos atrás', value: 's'},
+      {text: 'Minutos atrás', value: 'm'},
+      {text: 'Horas atrás', value: 'h'},
+      {text: 'Dias atrás', value: 'd'},
+      {text: 'Semanas atrás', value: 'S'},
+      {text: 'Mês atrás', value: 'M'},
+      {text: 'Anos atrás', value: 'a'},
     ];
     $scope.relative = {
       count: 1,
@@ -74,13 +75,13 @@ module.config(function($httpProvider) {
       round: false
     };
     $scope.sliderRoundOptions = [
-      {text: 'Second', value: 's'},
-      {text: 'Minute', value: 'm'},
-      {text: 'Hour', value: 'h'},
-      {text: 'Day', value: 'd'},
-      {text: 'Week', value: 'w'},
-      {text: 'Month', value: 'M'},
-      {text: 'Year', value: 'y'},
+      {text: 'Segundo', value: 's'},
+      {text: 'Minuto', value: 'm'},
+      {text: 'Hora', value: 'h'},
+      {text: 'Dia', value: 'd'},
+      {text: 'Semana', value: 'S'},
+      {text: 'Mês', value: 'M'},
+      {text: 'Ano', value: 'a'},
     ];
     $scope.slider = {
       roundUnit: 's',
@@ -171,7 +172,7 @@ module.config(function($httpProvider) {
       $scope.time.mode = 'absolute';
       expectedFrom = moment(start);
       expectedTo = moment(end);
-      $scope.animationTitle = 'Frame: ' + expectedFrom.format(DATE_FORMAT) + ' to ' + expectedTo.format(DATE_FORMAT);
+      $scope.animationTitle = 'Quadro: ' + expectedFrom.format(DATE_FORMAT) + ' to ' + expectedTo.format(DATE_FORMAT);
       updateKbnTime();
     }
 
@@ -193,7 +194,7 @@ module.config(function($httpProvider) {
 
     $scope.setRelative = function () {
       $scope.time.from = getRelativeString();
-      $scope.time.to = 'now';
+      $scope.time.to = 'agora';
       $scope.time.mode = 'relative';
       expectedFrom = $scope.time.from;
       expectedTo = $scope.time.to;
@@ -249,7 +250,7 @@ module.config(function($httpProvider) {
       var relativeParts = [];
 
       // Try to parse the relative time, if we can't use moment duration to guestimate
-      if (to.toString() === 'now' && fromParts[0] === 'now' && fromParts[1]) {
+      if (to.toString() === 'agora' && fromParts[0] === 'agora' && fromParts[1]) {
         relativeParts = fromParts[1].match(/([0-9]+)([smhdwMy]).*/);
       }
       if (relativeParts[1] && relativeParts[2]) {
@@ -280,7 +281,7 @@ module.config(function($httpProvider) {
     $scope.formatRelative = formatRelative;
 
     function getRelativeString() {
-      return 'now-' + $scope.relative.count + $scope.relative.unit + ($scope.relative.round ? '/' + $scope.relative.unit : '');
+      return 'agora-' + $scope.relative.count + $scope.relative.unit + ($scope.relative.round ? '/' + $scope.relative.unit : '');
     }
 
     // avoid digest cycle overflow by cachine start Date

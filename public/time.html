@@ -81,16 +81,26 @@
           <strong><i aria-hidden="true" class="fa fa-clock-o"></i> Absoluto</strong>
         </h4>
         <form ng-submit="setAbsolute()">
-          <div style="display: inline-block;">
-            <label class="small" style="float:left;">De: <span ng-show="!time.absolute_from"><i>Data Inválida</i></span>
-            </label>
-            <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_from">
+          <div class="kbn-timepicker-section kbn-inside-dashboard">
+            <div> <!--style="display: inline-block;"-->
+              <label class="small" style="float:left;">De: <span ng-show="!time.absolute_from"><i>Data Inválida</i></span>
+              </label>
+              <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_from">
+            </div>
+<!--            <div ng-if="!vis.params.hide_calendar">-->
+<!--                <datepicker ng-model="time.absolute_from" max-date="time.absolute_to" show-weeks="false"></datepicker>-->
+<!--            </div>-->
           </div>
 
-          <div style="display: inline-block;">
-            <label class="small" style="float:left;">Até: <span ng-show="!time.absolute_to"><i>Data Inválida</i></span>
-            </label>
-            <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_to">
+          <div class="kbn-timepicker-section" ng-class="{ 'col-xs-12': !vis.params.submit_right }">
+            <div>
+              <label class="small" style="float:left;">Até: <span ng-show="!time.absolute_to"><i>Data Inválida</i></span>
+              </label>
+              <input type="text" required class="form-control" input-datetime="{{format}}" ng-model="time.absolute_to">
+            </div>
+<!--            <div ng-if="!vis.params.hide_calendar">-->
+<!--                <datepicker ng-model="time.absolute_to" min-date="time.absolute_from" show-weeks="false"></datepicker>-->
+<!--            </div>-->
           </div>
 
           <div style="display: inline-block;">
